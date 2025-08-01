@@ -3,7 +3,10 @@ import fluidity_globals
 import duckdb as db
 import json
 
-from fluidity import LLM, llmCache, Utils, Task, TaskGroup, FormTask, FormFillTask, Workflow, UserInputTask, \
+# Prerequisites
+# pip install fluidityai
+# pip install numpy==1.26.4
+from fluidityai import LLM, llmCache, Utils, Task, TaskGroup, FormTask, FormFillTask, Workflow, UserInputTask, \
     PasswordInputTask, FileLoaderTask, RAGRetrievalTask, ChatbotTask
 
 # Remember to set the environment variable OPENAI_API_KEY to your Open AI key token
