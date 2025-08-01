@@ -2,7 +2,10 @@ import unittest
 from datetime import datetime as dt
 import string
 
-from fluidity import LLM, llmCache, Task, Workflow
+# Prerequisites
+# pip install fluidityai
+# pip install numpy==1.26.4
+from fluidityai import LLM, llmCache, Task, Workflow
 
 # Remember to set the environment variable OPENAI_API_KEY to your Open AI key token
 from openai import OpenAI
