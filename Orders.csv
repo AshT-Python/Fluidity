@@ -1,0 +1,4 @@
+﻿order_id,account_id,order_date,status,expected_delivery_date
+48765,T31230,31-May-25,Delivered,09-Jun-25
+69122,T31230,07-Jun-25,Awaiting confirmation by vendor(s),17-Jun-25
+70948,V99287,08-Jun-25,Awaiting confirmation by vendor(s),20-Jun-25
