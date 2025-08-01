@@ -1,5 +1,13 @@
 ## Fluidity
 
+### Prerequisites
+**Cmd line:**\
+pip install fluidityai\
+pip install "numpy<2"
+
+**In your code:**\
+from fluidityai import Task, Workflow, ...
+
 ### Introduction
 Fluidity is a set of classes written in Python to enable you to build AI workflows simply and intuitively. Basically, you create a workflow and add tasks to it. Each task points to its next task - alternatively, branch objects can be added to the workflow to programmatically decide where to go next by setting the "next_task" pointer. This way potentially complex workflow graphs, which can include cycles, can be constructed easily.
 
