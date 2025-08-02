@@ -44,7 +44,7 @@ Helper functions for text processing and network operations.
 **Task**
 This class is where the work is done: add instances of it to your Workflow (see below) object to send a request to an LLM or execute Python code locally. The constructor takes these arguments:\
 *name* [required]: the name of the task. It's also the label for the task's output elsewhere in the workflow.\
-*instructions* [required]: Natural language intructions for the LLM, Python code or 'file:\<Python code filepath\>'. If Python code, it is executed dynamically. It is required to set the *result* (i.e. the task's output value) and *next_task* variables in the code. *next_task* can be set to 'STOP' to terminate the workflow run.\
+*instructions* [required]: Either natural language intructions for the LLM or Python code: the code itself or 'file:\<Python code filepath\>'. If Python code (as opposed to LLM instructions), it is executed dynamically. It is required to set the *result* (i.e. the task's output value) and *next_task* variables in the code. *next_task* can be set to 'STOP' to terminate the workflow run.\
 *role* [optional]: How should the LLM behave? e.g. 'You are an AI legal assistant specialising in family law enquiries'.\
 *output_type* [optional - 'string' (default), 'num', 'json', 'list' or 'dict']\
 *llm_or_code* [optional - 'llm' (default) or 'code']: Describes instructions\
@@ -58,7 +58,7 @@ Executes tasks in parallel. Add tasks to a task group instance, then add the tas
 Set *name* and *instructions* (Python code) in the constructor, then add to a workflow like a task. It is required to set the *next_task* variable in the code - set it to 'STOP' to terminate the workflow run.
 
 **Workflow**
-Add tasks and branches to a workflow object. Either *setFirstTask("<first_task_name>")* and *run()*, or run with *run("<first_task_name>")*.
+Add tasks and branches to a workflow object. Either *setFirstTask("<first_task_name>")* and *run()*, or run with *run("<first_task_name>")*. Use *setRemoteClient(web_socket)* to implement the workflow in a chatbot.
 
 **UserInputTask**
 Subclass of Task. Makes repeated command line or web chat requests until user enters the information required in a recognisable format. See fluidity_examples.py lines 74-164. Uses an LLM call to extract the required field from natural language.
