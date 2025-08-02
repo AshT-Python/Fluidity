@@ -27,7 +27,8 @@ t1.setNextTask("Queen")\
 t2.setNextTask("DOB")\
 t3.setNextTask("Older")\
 w.addTasks(t1, t2, t3, t4)\
-w.run("King")
+w.run("King")                # Run workflow from specified task name\
+print(w.outputs()["Older"])  # prints the name of the older monarch\
 </small>
 
 After the above routine runs, {Older} or task_outputs["Older"] will be the name of the older monarch for subsequent LLM and code tasks respectively. You can run and test the actual code in fluidity_tests.py.
