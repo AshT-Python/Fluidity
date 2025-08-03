@@ -331,8 +331,8 @@ the key details required to make a booking, e.g. travel date, number of people t
 ### RUN THIS CODE ###
 #####################
 # RetailChatbot()
-# HAIKUS()
+HAIKUS()
 # RAGTest()
 # SimpleChatbot()
 # AssortedTests()
-Taxi()
+# Taxi()
