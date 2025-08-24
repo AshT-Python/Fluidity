@@ -15,6 +15,7 @@ import pandas as pd
 pd.set_option('display.max_colwidth', None)
 
 import PyPDF2
+from docx import Document
 from detoxify import Detoxify
 from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
@@ -943,6 +944,17 @@ class FileLoaderTask(UserInputTask):
 
             if file_path.lower().endswith(".csv"):
                 self.workflow_task_outputs[self._name][file_name] = pd.read_csv(file_path)
+            elif file_path.lower().endswith(".docx") or file_path.lower().endswith(".doc"):
+                # Open the Word document
+                doc = Document(file_path)
+
+                # Extract text from each paragraph
+                full_text = []
+                for para in doc.paragraphs:
+                    full_text.append(para.text)
+
+                # Combine paragraphs into a single string
+                self.workflow_task_outputs[self._name][file_name] = '\n'.join(full_text)
             elif file_path.lower().endswith(".pdf"):
                 text = ""
                 with open(file_path, "rb") as f:
