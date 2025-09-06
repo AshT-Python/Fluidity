@@ -944,7 +944,7 @@ class FileLoaderTask(UserInputTask):
 
             if file_path.lower().endswith(".csv"):
                 self.workflow_task_outputs[self._name][file_name] = pd.read_csv(file_path)
-            elif file_path.lower().endswith(".docx") or file_path.lower().endswith(".doc"):
+            elif file_path.lower().endswith(".docx"):
                 # Open the Word document
                 doc = Document(file_path)
 
@@ -1056,6 +1056,17 @@ class RAGCache:
 
             if file_path.lower().endswith(".csv"):
                 self.files.append(pd.read_csv(file_path))
+            elif file_path.lower().endswith(".docx"):
+                # Open the Word document
+                doc = Document(file_path)
+
+                # Extract text from each paragraph
+                full_text = []
+                for para in doc.paragraphs:
+                    full_text.append(para.text)
+
+                # Combine paragraphs into a single string
+                self.files.append('\n'.join(full_text))
             elif file_path.lower().endswith(".pdf"):
                 text = ""
                 with open(file_path, "rb") as f:
