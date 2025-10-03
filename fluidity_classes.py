@@ -822,11 +822,19 @@ class UserInputTask(Task):
         self.validation_function = fn
 
     def is_unsafe(self, text):
-        if self.validation_function is not None:
-            return not self.validation_function(text)
+        try:
+            if self.validation_function is not None:
+                return not self.validation_function(text)
         
-        postcode_or_email = self.data_type is not None and self.data_type.lower() == "email" or "postcode" in text.lower() or "post code" in ' '.join(text.lower().split())
-        return Utils.is_toxic(text) or (not postcode_or_email and Utils.is_llm_unsafe(text))
+            postcode_or_email = self.data_type is not None and self.data_type.lower() == "email" \
+            or "postcode" in text.lower() or "post code" in ' '.join(text.lower().split())
+
+        except Exception as e:
+            print(f"Error in is_unsafe(): {e}")
+            return False
+
+        finally:
+            return Utils.is_toxic(text) or (not postcode_or_email and Utils.is_llm_unsafe(text))
 
     def execute(self):
         if self.data_type is not None:
