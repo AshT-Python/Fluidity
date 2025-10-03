@@ -716,7 +716,11 @@ class Workflow:
 
         task = self.get_task_by_name(first_task_name)
         while task is not None:
-            task.run()
+            try:
+                task.run()
+            except Exception as e:
+                print(f"Error in task {task._name}: {e}")
+
             if task.next_task is not None and task.next_task.lower() == "stop":
                 return
             
